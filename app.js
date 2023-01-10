@@ -2,6 +2,8 @@ const modeBtn = document.querySelector("#mode-btn");
 const destoryBtn = document.querySelector("#destroy-btn");
 const eraserBtn = document.querySelector("#eraser-btn");
 const fileInput = document.querySelector("#file");
+const textInput = document.querySelector("#text");
+const saveBtn = document.querySelector("#save");
 const lineWidth = document.querySelector("#line-width");
 const color = document.querySelector("#color");
 const colorOptions = Array.from(
@@ -12,6 +14,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = "round";
 let isPainting = false;
 let isFilling = false;
 function onMove(event) {
@@ -80,6 +83,26 @@ function onFileChange(event) {
     fileInput.value = null;
   };
 }
+
+function onDoubleClick(event) {
+  // ctx.save : ct의 현재 상태, 색상, 스타일 등을 저장함
+  const text = textInput.value;
+  if (text !== "") {
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.font = `50px serif`;
+    ctx.strokeText(text, event.offsetX, event.offsetY);
+    // ctx.restore : save 상태로 되돌림
+    ctx.restore();
+  }
+}
+function onSaveClick() {
+  const url = canvas.toDataURL();
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "myDrawing.png";
+  a.click();
+}
 // canvas.onmousemove = function () {}; 이렇게도 가능
 // canvas.onmousemove = onMove; 이렇게도 가능
 canvas.addEventListener("mousemove", onMove);
@@ -94,3 +117,6 @@ modeBtn.addEventListener("click", onModeClick);
 destoryBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
 fileInput.addEventListener("change", onFileChange);
+// double click
+canvas.addEventListener("dblclick", onDoubleClick);
+saveBtn.addEventListener("click", onSaveClick);

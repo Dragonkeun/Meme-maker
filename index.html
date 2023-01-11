@@ -30,9 +30,11 @@
         <button id="mode-btn">채우기 모드로 변경</button>
         <button id="destroy-btn">전체 지우개</button>
         <button id="eraser-btn">지우개</button>
-        <input type="file" accept="image/*" id="file" />
-        <input type="text" placeholder="Write and then double click" id="text" />
-        <button id="save">Save image</button>
+        <!-- label의 for value(file)과 input의 id value(file)이 같아야 함 -->
+        <!-- label인 이미지 추가를 클릭하면 id value가 file인 input을 실행함 label 안에 안넣어도 됨 하지만 넣어서 구현했음 -->
+        <label for="file">이미지 추가 <input type="file" accept="image/*" id="file" /></label>
+        <input type="text" placeholder="텍스트를 입력하세요" id="text" />
+        <button id="save">👻 저장</button>
     </div>
     <script src="app.js"></script>
 </body>

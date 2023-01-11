@@ -1,17 +1,58 @@
+@import "reset.css";
+
+body {
+    display: flex;
+    gap: 20px;
+    /* justify-content: space-between; */
+    /* align-items: flex-start; */
+    background-color: gainsboro;
+    padding: 20px;
+}
+
 canvas {
     width: 800px;
     height: 800px;
-    border: 5px solid black;
+    background-color: white;
+    border-radius: 10px;
 }
 
 body {
     display: flex;
-    ;
     justify-content: center;
     align-items: center;
 }
 
+
 .color-option {
-    width:50px;
-    height:50px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border: 5px solid white;
+    border-radius: 50%;
+}
+
+.color-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform ease-in .1s;
+    align-items: center;
+}
+
+.color-option:hover {
+    transform: scale(1.2);
+}
+
+input#color {
+    background-color: white;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    /* unset : 버튼의 css 속성을 전부 제거함 */
+    all:unset;
 }
